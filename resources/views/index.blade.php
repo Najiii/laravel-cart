@@ -10,57 +10,44 @@
 
         @include('master.stylesheet') 
 
-        <style>
-            body {
-                background-color: #6ab04d;
-            }
-
-            .card img {
-                width: 100%;
-                height: 200px;
-            }
-
-            .card-link {
-                color: white;
-                padding: 5px 80px;
-                background-color: #6ab04d;
-            }
-
-            .card-link:hover {
-                color: white;
-            }
-
-            @media only screen and (max-width: 1195px) {
-                .card {
-                    margin: 5px auto;
-                }
-            }
-        </style>
     </head>
     <body>
         @include('master.navbar')
 
-        <div class="container-fluid mt-5">
-            <div class="row d-flex justify-content-center">
-                @foreach ($products as $product)
-                    <div class="col-lg-3 col-md-3 col-sm-2 col-12 align-middle">
-                        <div class="card" style="width: 18rem;">
-                            <img src="data:image/png;base64, {{ $product->image_64 }}" class="card-img-top">
-                            
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $product->name }}</h5>
-                                <p class="card-text">{{ $product->description }}</p>
-                            </div>
-                        
-                            <div class="card-body">
-                                <a class="card-link" href="{{ url('cart/add', $product->id) }}">Add to cart!</a>
+        <section class="product_list section_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product_list_slider owl-carousel">
+                            <div class="single_product_list_slider">
+                                <div class="row align-items-center justify-content-between">
+                                    @foreach ($products as $product)
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div class="single_product_item">
+                                                <img src="data:image/jpeg;base64, {{ $product->image_64 }}" width="280px" height="200px">
+                                                <div class="single_product_text">
+                                                    <h4>{{ $product->name }}</h4>
+                                                    <h3>{{ $product->price }}</h3>
+
+                                                    @guest
+                                                        <a href="{{ route('login') }}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                                    @endguest
+                                                    
+                                                    @auth
+                                                        <a href="{{ url('cart/add', $product->id) }}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>   
+                                                    @endauth
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
             </div>
-        </div>
-            
+        </section>
+
         @include('master.scripts') 
     </body>
 </html>
