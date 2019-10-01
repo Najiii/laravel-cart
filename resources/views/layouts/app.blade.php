@@ -25,6 +25,8 @@
         </main>
     </div>
 
+    @include('master.footer')
+
     @include('master.scripts')
 </body>
 </html>

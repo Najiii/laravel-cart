@@ -20,14 +20,14 @@
                     <div class="col-lg-12">
                         <div class="product_list_slider owl-carousel">
                             <div class="single_product_list_slider">
-                                <div class="row align-items-center justify-content-between">
+                                <div class="row align-items-center">
                                     @foreach ($products as $product)
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="single_product_item">
-                                                <img src="data:image/jpeg;base64, {{ $product->image_64 }}" width="280px" height="200px">
+                                                <img src="data:image/jpeg;base64, {{ $product->image_64 }}" width="200px" height="200px">
                                                 <div class="single_product_text">
                                                     <h4>{{ $product->name }}</h4>
-                                                    <h3>{{ $product->price }}</h3>
+                                                    <h3>{{ $product->price }} Rs</h3>
 
                                                     @guest
                                                         <a href="{{ route('login') }}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
@@ -47,6 +47,8 @@
                 </div>
             </div>
         </section>
+
+        @include('master.footer')
 
         @include('master.scripts') 
     </body>

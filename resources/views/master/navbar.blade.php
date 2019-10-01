@@ -15,6 +15,18 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/') }}">Home</a>
                             </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown_1"
+                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Shop
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
+                                    @foreach($categories as $c)
+                                        <a class="dropdown-item" href="{{ url('category/show', $c->id) }}">{{ $c->name }}</a>
+                                    @endforeach
+                                </div>
+                            </li>
                             
                             @guest
                             <li class="nav-item">

@@ -2378,7 +2378,7 @@ var $range = $(".js-range-slider"),
     $inputTo = $(".js-input-to"),
     instance,
     min = 0,
-    max = 1000,
+    max = 10000,
     from = 10,
     to = 100;
 
@@ -2387,7 +2387,7 @@ $range.ionRangeSlider({
     min: min,
     max: max,
     from: 0,
-    to: 500,
+    to: 10000,
   prefix: 'tk. ',
     onStart: updateInputs,
     onChange: updateInputs,
@@ -2395,8 +2395,16 @@ $range.ionRangeSlider({
     prettify_enabled: true,
     prettify_separator: ".",
   values_separator: " - ",
-  force_edges: true
+  force_edges: true,
   
+  onChange: function(data) {
+    $(".js-input-from").val(data.from);
+    $(".js-input-to").val(data.to);
+
+    setTimeout(function(){ $('#price_form').submit() }, 3000);
+    
+  }
+
 
 });
 
