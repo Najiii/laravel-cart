@@ -22,7 +22,7 @@
                                     Shop
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                    @foreach($categories as $c)
+                                    @foreach($errors as $c)
                                         <a class="dropdown-item" href="{{ url('category/show', $c->id) }}">{{ $c->name }}</a>
                                     @endforeach
                                 </div>
